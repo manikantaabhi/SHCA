@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
-
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
     axios.get(`${baseURL}/api/reviews`)
       .then((res) => setReviews(res.data))
