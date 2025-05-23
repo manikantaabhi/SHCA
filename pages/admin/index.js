@@ -5,9 +5,10 @@ import ProtectedRoute from '../../components/ProtectedRoute';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/admin/stats')
+    axios.get(`${baseURL}/api/admin/stats`)
       .then((res) => setStats(res.data))
       .catch((err) => console.error('Failed to load stats:', err));
   }, []);

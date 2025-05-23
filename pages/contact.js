@@ -13,10 +13,12 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/inquiries/add', form);
+      await axios.post(`${baseURL}/api/inquiries/add`, form);
       alert('Your message has been sent!');
       setForm({ name: '', email: '', phone: '', message: '' });
     } catch (err) {

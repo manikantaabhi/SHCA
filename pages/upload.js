@@ -8,6 +8,7 @@ const storage = getStorage(app);
 export default function UploadPage() {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState('');
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const handleUpload = async () => {
     if (!image) return alert('Please select an image');
@@ -21,7 +22,7 @@ export default function UploadPage() {
       const url = await getDownloadURL(storageRef);
 
       // Send to backend to save in MongoDB
-      await axios.post('http://localhost:5000/api/gallery/add', {
+      await axios.post(`${baseURL}/api/gallery/add`, {
         caption,
         imageUrl: url,
       });

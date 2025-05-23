@@ -5,12 +5,13 @@ export default function ReviewFormPage() {
   const [name, setName] = useState('');
   const [reviewText, setReviewText] = useState('');
   const [rating, setRating] = useState(5);
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:5000/api/reviews/add', {
+      await axios.post(`${baseURL}/api/reviews/add`, {
         name,
         reviewText,
         rating,

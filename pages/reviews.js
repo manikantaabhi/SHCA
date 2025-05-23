@@ -5,7 +5,7 @@ export default function ReviewsPage() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/reviews')
+    axios.get(`${baseURL}/api/reviews`)
       .then((res) => setReviews(res.data))
       .catch((err) => console.error(err));
   }, []);

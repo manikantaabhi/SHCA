@@ -4,9 +4,9 @@ import ProtectedRoute from '../../components/ProtectedRoute';
 
 export default function InquiriesPage() {
   const [inquiries, setInquiries] = useState([]);
-
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
-    axios.get('http://localhost:5000/api/inquiries')
+    axios.get(`${baseURL}/api/inquiries`)
       .then((res) => setInquiries(res.data))
       .catch((err) => console.error('Failed to fetch inquiries:', err));
   }, []);

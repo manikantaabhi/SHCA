@@ -22,11 +22,11 @@ export default function LoginPage() {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-
+      const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
       console.log("Firebase Google User:", user);
 
       // ✅ Send to backend (creates or finds user)
-      await axios.post('http://localhost:5000/api/users/add', {
+      await axios.post(`${baseURL}/api/users/add`, {
         name: user.displayName,
         email: user.email,
         image: user.photoURL,

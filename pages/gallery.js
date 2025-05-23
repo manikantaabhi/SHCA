@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export default function GalleryPage() {
   const [images, setImages] = useState([]);
-
+  const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
   useEffect(() => {
-    axios.get('http://localhost:5000/api/gallery')
+    axios.get(`${baseURL}/api/gallery`)
       .then((res) => setImages(res.data))
       .catch((err) => console.error(err));
   }, []);
