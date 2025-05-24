@@ -36,11 +36,19 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Academy Info */}
         <div>
-          <h2 className="text-xl font-semibold mb-2">7 Hills Chess Academy</h2>
-          <p className="text-sm text-gray-300">
-            Located in Tirupati, SHCA is dedicated to training chess enthusiasts of all ages and skill levels. Join us and elevate your game!
-          </p>
-        </div>
+  <h2 className="text-xl font-semibold mb-2">7 Hills Chess Academy</h2>
+  <p className="text-sm text-gray-300 mb-2">
+    Located in Tirupati, SHCA is dedicated to training chess enthusiasts of all ages and skill levels.
+  </p>
+  <a
+    href="https://www.google.com/maps/place/SHCA+7+Hills+Chess+Academy+1+-+Tirupati/@13.6461526,79.4248369,16z/data=!3m1!4b1!4m6!3m5!1s0x3a4d4b25b416e083:0xfd213bc8d5464025!8m2!3d13.6461474!4d79.4274118!16s%2Fg%2F11pzkddh5t?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-sm text-yellow-400 hover:underline block mt-2"
+  >
+    📍 SHCA, 3rd Floor, Uma Pinnacles, Tirumala Bypass Rd, Tirupati
+  </a>
+</div>
 
         {/* Quick Links */}
         <div>
@@ -55,7 +63,7 @@ export default function Footer() {
 
         {/* Contact / Enquiry */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Contact & Enquiry</h3>
+          <h3 className="text-lg font-semibold mb-3">Enquiry</h3>
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <input
               type="email"
