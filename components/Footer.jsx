@@ -1,8 +1,39 @@
+'use client'; // add this if you're using Next.js App Router
+
+import { useState } from "react";
+
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("Sending...");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message }),
+      });
+
+      if (res.ok) {
+        setStatus("✅ Message sent successfully!");
+        setEmail('');
+        setMessage('');
+      } else {
+        setStatus("❌ Failed to send message.");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("❌ An error occurred.");
+    }
+  };
+
   return (
     <footer className="bg-gray-900 text-white px-6 py-10 mt-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        
         {/* Academy Info */}
         <div>
           <h2 className="text-xl font-semibold mb-2">7 Hills Chess Academy</h2>
@@ -25,13 +56,19 @@ export default function Footer() {
         {/* Contact / Enquiry */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact & Enquiry</h3>
-          <form className="flex flex-col gap-3">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <input
               type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Your Email"
               className="px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm"
             />
             <textarea
+              required
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               placeholder="Your Message"
               rows={3}
               className="px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm"
@@ -42,6 +79,7 @@ export default function Footer() {
             >
               Send Enquiry
             </button>
+            {status && <p className="text-xs mt-2 text-green-400">{status}</p>}
           </form>
         </div>
       </div>
