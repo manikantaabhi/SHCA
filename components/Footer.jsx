@@ -1,13 +1,55 @@
 export default function Footer() {
-    return (
-      <footer style={{
-        marginTop: '2rem',
-        padding: '1rem',
-        backgroundColor: '#f0f0f0',
-        textAlign: 'center'
-      }}>
-        <p>© 2025 SHCA – 7 Hills Chess Academy, Tirupati</p>
-      </footer>
-    );
-  }
-  
+  return (
+    <footer className="bg-gray-900 text-white px-6 py-10 mt-12">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        {/* Academy Info */}
+        <div>
+          <h2 className="text-xl font-semibold mb-2">7 Hills Chess Academy</h2>
+          <p className="text-sm text-gray-300">
+            Located in Tirupati, SHCA is dedicated to training chess enthusiasts of all ages and skill levels. Join us and elevate your game!
+          </p>
+        </div>
+
+        {/* Quick Links */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+          <ul className="space-y-2 text-sm text-gray-300">
+            <li><a href="/courses" className="hover:underline">Courses</a></li>
+            <li><a href="/events" className="hover:underline">Upcoming Events</a></li>
+            <li><a href="/about" className="hover:underline">About Us</a></li>
+            <li><a href="/contact" className="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+
+        {/* Contact / Enquiry */}
+        <div>
+          <h3 className="text-lg font-semibold mb-3">Contact & Enquiry</h3>
+          <form className="flex flex-col gap-3">
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm"
+            />
+            <textarea
+              placeholder="Your Message"
+              rows={3}
+              className="px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-sm"
+            >
+              Send Enquiry
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="text-center text-xs text-gray-500 mt-10">
+        © 2025 SHCA – 7 Hills Chess Academy, Tirupati. All rights reserved.
+      </div>
+    </footer>
+  );
+}

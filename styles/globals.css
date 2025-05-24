@@ -17,4 +17,46 @@ body {
   button {
     cursor: pointer;
   }
+  @keyframes float {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+      transform: translateY(-6px) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-2.5deg);
+    }
+    75% {
+      transform: translateY(-6px) rotate(2deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+  
+  .float-card {
+    animation: float 4s ease-in-out infinite;
+    will-change: transform;
+  }
+  
+  .float-card:hover {
+    animation-play-state: paused;
+  }
+  
+  .float-delay-0 {
+    animation-delay: 0s;
+  }
+  .float-delay-1 {
+    animation-delay: 0.4s;
+  }
+  .float-delay-2 {
+    animation-delay: 0.8s;
+  }
+  .float-delay-3 {
+    animation-delay: 1.2s;
+  }
+  .float-delay-4 {
+    animation-delay: 1.6s;
+  }
   

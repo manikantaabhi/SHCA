@@ -19,7 +19,8 @@ export default function Navbar() {
   if (loading) return null;
 
   return (
-    <nav className="bg-gray-900 text-white sticky top-0 z-50 px-6 py-4 relative">
+    <nav className="bg-white text-shadow-white  backdrop-blur-md text-green sticky top-0 z-50 px-6 py-4 relative">
+
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link href="/" className="text-lg font-bold">♟ SHCA</Link>
 
@@ -39,7 +40,7 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
 {isOpen && (
-  <div className="absolute top-full left-0 w-full bg-gray-900 shadow-lg flex flex-col items-center space-y-4 py-4 z-40">
+  <div className="absolute top-full left-0 w-full text-white bg-gray-900 shadow-lg flex flex-col items-center space-y-4 py-4 z-40">
     <NavLinks user={user} handleLogout={handleLogout} toggle={() => setIsOpen(false)} />
   </div>
 )}
