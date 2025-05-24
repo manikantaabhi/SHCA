@@ -1,6 +1,7 @@
+'use client'
 import { useState } from 'react';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { app } from '../utils/firebase';
+import { app } from '../../utils/firebase';
 import axios from 'axios';
 
 const storage = getStorage(app);

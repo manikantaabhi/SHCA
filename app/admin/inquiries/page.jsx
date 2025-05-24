@@ -1,6 +1,7 @@
+'use client';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import ProtectedRoute from '../../components/ProtectedRoute';
+import ProtectedRoute from '../../../components/ProtectedRoute';
 
 export default function InquiriesPage() {
   const [inquiries, setInquiries] = useState([]);

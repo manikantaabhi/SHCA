@@ -1,13 +1,14 @@
+'use client';
+
 import { useEffect } from 'react';
-import { auth, provider } from '../utils/firebase';
+import { auth, provider } from '../../utils/firebase';
 import { signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'; // ✅ correct in App Router
 
 export default function LoginPage() {
   const router = useRouter();
 
-  // ✅ Auto-redirect if already signed in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -25,7 +26,6 @@ export default function LoginPage() {
       const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
       console.log("Firebase Google User:", user);
 
-      // ✅ Send to backend (creates or finds user)
       await axios.post(`${baseURL}/api/users/add`, {
         name: user.displayName,
         email: user.email,
@@ -33,7 +33,7 @@ export default function LoginPage() {
       });
 
       alert('Login successful!');
-      router.push('/'); // ✅ Redirect after login
+      router.push('/');
     } catch (error) {
       console.error("Login failed", error);
       alert('Login failed. Check console for details.');

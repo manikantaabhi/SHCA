@@ -1,6 +1,9 @@
-import { useRouter } from 'next/router';
-import { useAuth } from '../context/AuthContext';
+
+"use client";
+
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -12,7 +15,9 @@ export default function ProtectedRoute({ children }) {
     }
   }, [loading, user]);
 
+  // 🛑 Don't render anything until loading is done
   if (loading) return <p>Loading...</p>;
 
-  return children;
+  // 🔐 Only render children if user is authenticated
+  return user ? children : null;
 }

@@ -1,3 +1,5 @@
+"use client"; // ✅ Required for using hooks like useEffect, useState
+
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
@@ -17,19 +19,19 @@ export default function AdminDashboard() {
 
   return (
     <ProtectedRoute>
-    <div style={{ padding: '2rem' }}>
-      <h2>Admin Dashboard</h2>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        gap: '20px',
-        marginTop: '1.5rem'
-      }}>
-        <DashboardCard title="Total Users" value={stats.userCount} link="/users" />
-        <DashboardCard title="Total Inquiries" value={stats.inquiryCount} link="/admin/inquiries" />
-        <DashboardCard title="Total Reviews" value={stats.reviewCount} link="/reviews" />
+      <div style={{ padding: '2rem' }}>
+        <h2>Admin Dashboard</h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+          gap: '20px',
+          marginTop: '1.5rem'
+        }}>
+          <DashboardCard title="Total Users" value={stats.userCount} link="/users" />
+          <DashboardCard title="Total Inquiries" value={stats.inquiryCount} link="/admin/inquiries" />
+          <DashboardCard title="Total Reviews" value={stats.reviewCount} link="/reviews" />
+        </div>
       </div>
-    </div>
     </ProtectedRoute>
   );
 }
