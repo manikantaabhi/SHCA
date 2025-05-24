@@ -19,6 +19,13 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+
       await axios.post(`${baseURL}/api/inquiries/add`, form);
       alert('Your message has been sent!');
       setForm({ name: '', email: '', phone: '', message: '' });

@@ -1,11 +1,13 @@
-'use client'; // add this if you're using Next.js App Router
-
-import { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [status, setStatus] = useState('');
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,13 +17,12 @@ export default function Footer() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, message }),
+        body: JSON.stringify(form),
       });
 
       if (res.ok) {
         setStatus("✅ Message sent successfully!");
-        setEmail('');
-        setMessage('');
+        setForm({ name: '', email: '', phone: '', message: '' });
       } else {
         setStatus("❌ Failed to send message.");
       }
@@ -36,19 +37,19 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Academy Info */}
         <div>
-  <h2 className="text-xl font-semibold mb-2">7 Hills Chess Academy</h2>
-  <p className="text-sm text-gray-300 mb-2">
-    Located in Tirupati, SHCA is dedicated to training chess enthusiasts of all ages and skill levels.
-  </p>
-  <a
-    href="https://www.google.com/maps/place/SHCA+7+Hills+Chess+Academy+1+-+Tirupati/@13.6461526,79.4248369,16z/data=!3m1!4b1!4m6!3m5!1s0x3a4d4b25b416e083:0xfd213bc8d5464025!8m2!3d13.6461474!4d79.4274118!16s%2Fg%2F11pzkddh5t?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-sm text-yellow-400 hover:underline block mt-2"
-  >
-    📍 SHCA, 3rd Floor, Uma Pinnacles, Tirumala Bypass Rd, Tirupati
-  </a>
-</div>
+          <h2 className="text-xl font-semibold mb-2">7 Hills Chess Academy</h2>
+          <p className="text-sm text-gray-300 mb-2">
+            Located in Tirupati, SHCA is dedicated to training chess enthusiasts of all ages and skill levels.
+          </p>
+          <a
+            href="https://www.google.com/maps/place/SHCA+7+Hills+Chess+Academy+1+-+Tirupati/@13.6461526,79.4248369,16z/data=!3m1!4b1!4m6!3m5!1s0x3a4d4b25b416e083:0xfd213bc8d5464025!8m2!3d13.6461474!4d79.4274118!16s%2Fg%2F11pzkddh5t?entry=ttu&g_ep=EgoyMDI1MDUyMS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-yellow-400 hover:underline block mt-2"
+          >
+            📍 SHCA, 3rd Floor, Uma Pinnacles, Tirumala Bypass Rd, Tirupati
+          </a>
+        </div>
 
         {/* Quick Links */}
         <div>
@@ -64,28 +65,52 @@ export default function Footer() {
         {/* Contact / Enquiry */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Enquiry</h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 max-w-full text-gray-900 space-y-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              required
+              value={form.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+
             <input
               type="email"
+              name="email"
+              placeholder="Your email"
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your Email"
-              className="px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
+
+            <input
+              type="text"
+              name="phone"
+              placeholder="Phone number"
+              required
+              value={form.phone}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            />
+
             <textarea
+              name="message"
+              placeholder="Your message"
               required
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Your Message"
-              rows={3}
-              className="px-3 py-2 rounded bg-gray-800 border border-gray-700 text-sm"
+              rows={4}
+              value={form.message}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
             />
+
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-sm"
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md transition"
             >
-              Send Enquiry
+              Send Message
             </button>
             {status && <p className="text-xs mt-2 text-green-400">{status}</p>}
           </form>

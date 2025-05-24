@@ -59,13 +59,13 @@ function NavLinks({ user, handleLogout, toggle }) {
       <Link href="/gallery" className={linkClass} onClick={toggle}>Gallery</Link>
       <Link href="/reviews" className={linkClass} onClick={toggle}>Reviews</Link>
       <Link href="/contact" className={linkClass} onClick={toggle}>Contact</Link>
-      {!user && <Link href="/login" className={linkClass} onClick={toggle}>Login</Link>}
+      {/* {!user && <Link href="/login" className={linkClass} onClick={toggle}>Login</Link>}
       {user && <Link href="/admin" className={linkClass} onClick={toggle}>Admin</Link>}
       {user && (
         <span onClick={() => { handleLogout(); if (toggle) toggle(); }} className={`cursor-pointer ${linkClass}`}>
           Logout
         </span>
-      )}
+      )} */}
     </>
   );
 }
